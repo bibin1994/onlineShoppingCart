@@ -3,7 +3,7 @@
    xmlns:mvc = "http://www.springframework.org/schema/mvc"
    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation = "http://www.springframework.org/schema/beans     
-   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd
     http://www.springframework.org/schema/mvc 
@@ -16,6 +16,39 @@
            <property name="suffix" value=".jsp"></property>
    </bean>
    
+   <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+   <property name="url" value="jdbc:oracle:thin:@bibin-PC:1521:orcl"></property>
+   <property name="username" value="system"></property>
+   <property name="password" value="bibin"></property>
+   </bean>
+   
+   <bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+   <property name="dataSource" ref="datasource"></property>
+    </bean>
+   
+   <bean id="dao" class="org.bibin.dao.UserDao">
+   <property name="template" ref="template"></property>
+   </bean>
+   
+   <!-- mail -->
+   
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+  <property name="host" value="smtp.gmail.com" />  
+    <property name="username" value="bibinmsr@gmail.com" />  
+    <property name="password" value="$Mary@1994$" />  
+    <property name="javaMailProperties">  
+       <props>  
+              <prop key="mail.smtp.auth">true</prop>  
+              <prop key="mail.smtp.socketFactory.port">465</prop>  
+              <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>  
+              <prop key="mail.smtp.port">465</prop>  
+        </props>  
+    </property>  
+</bean>  
+<bean id="mailMail" class="org.bibin.bean.Mailmim">  
+    <property name="mailSender" ref="mailSender" />  
+</bean> 
   
    <mvc:resources location="/resources/assets/" mapping="/resources/**"   />
     <mvc:annotation-driven/>

@@ -16,9 +16,8 @@
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
       </div>
-      <!-- /.container -->
+      
     </footer>
-     <script src="${js}/jquery.js"></script>
-    <script src="${js}/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
