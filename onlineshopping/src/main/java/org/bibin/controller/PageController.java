@@ -18,7 +18,7 @@ public class PageController {
 	UserDao use=null;
 	
 
-	@RequestMapping("/")  
+	@RequestMapping(value= {"/","/index"})  
     public ModelAndView showform(){  
          //command is a reserved request attribute name, now use <form> tag to show object data  
         return new ModelAndView("home","command",new User());
@@ -28,26 +28,34 @@ public class PageController {
 	public ModelAndView home()
 	{
 		ModelAndView model=new ModelAndView("home");
+		model.addObject("title","home");
+		model.addObject("userClickHome","true");
 		return model;
 		
 	}
 	@RequestMapping("/about")
 	public ModelAndView about()
 	{
-		ModelAndView model=new ModelAndView("about");
+		ModelAndView model=new ModelAndView("home");
+		model.addObject("title","about");
+		model.addObject("userClickAbout","true");
 		return model;
 	}
 	
 	@RequestMapping("/services")
 	public ModelAndView services()
 	{
-		ModelAndView model=new ModelAndView("services");
+		ModelAndView model=new ModelAndView("home");
+		model.addObject("title","services");
+		model.addObject("userClickServices","true");
 		return model;
 	}
 	@RequestMapping("/contact")
 	public ModelAndView contact()
 	{
-		ModelAndView model=new ModelAndView("contact");
+		ModelAndView model=new ModelAndView("home");
+		model.addObject("title","contact");
+		model.addObject("userClickContact","true");
 		return model;
 	}
 	

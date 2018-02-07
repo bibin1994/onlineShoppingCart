@@ -53,7 +53,7 @@
     
     
 
- <%@ include file="/WEB-INF/view/footer.jsp" %>
+ <%@ include file="./shared/footer.jsp" %>
     
 
     <!-- Bootstrap core JavaScript -->

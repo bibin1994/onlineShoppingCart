@@ -3,6 +3,7 @@ package org.bibin.controller;
 import javax.servlet.http.HttpSession;
 
 import org.bibin.bean.Forgot;
+import org.bibin.bean.Login;
 import org.bibin.bean.Mailmim;
 import org.bibin.bean.RestPsw;
 import org.bibin.bean.User;
@@ -11,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes("rest")
+@SessionAttributes("username")
 public class LoginController {
 	@Autowired
 	UserDao use=null;
@@ -25,23 +27,42 @@ public class LoginController {
 	@RequestMapping("/login")
 	public ModelAndView login()
 	{
-		ModelAndView model=new ModelAndView("login","command",new User());
+		ModelAndView model=new ModelAndView("login");
+		model.addObject("log",new Login());
+		return model;
+	}
+//	Login test
+//	@RequestMapping(value="/logged",method=RequestMethod.POST)
+//	public ModelAndView fgp(@ModelAttribute("log") Login log)
+//	{
+//		ModelAndView model=new ModelAndView("login");
+//		boolean i=use.login(log);
+//		if(i==true)
+//		{   ModelAndView model1=new ModelAndView("home");
+//			return model1
+//					;
+//		}
+//		
+//		model.addObject("login");
+//		return model;
+//	}
+	
+	@RequestMapping(value="/logged",method=RequestMethod.POST)
+	public ModelAndView fgp(@ModelAttribute("log") Login log)
+	{
+		ModelAndView model=new ModelAndView("login");
+		boolean i=use.login(log);
+		if(i==true)
+		{   ModelAndView model1=new ModelAndView("home");
+			
+			return model1;
+					
+		}
+		
+		model.addObject("login");
 		return model;
 	}
 	
-	@RequestMapping("/logged")
-	public ModelAndView fgp(@RequestParam("mailId") String mail,@RequestParam("password") String pass)
-	{
-		ModelAndView model=new ModelAndView("");
-		 User us=new User();
-		 us.setMailId(mail);
-		 us.setPassword(pass);
-		 
-	boolean i=use.login(us);
-		
-		
-		return model;
-	}
 	
 	@RequestMapping("/forgot")
 	public ModelAndView forgot()
@@ -50,7 +71,7 @@ public class LoginController {
 		return model;
 	}
 	
-	@RequestMapping("sendmsg")
+	@RequestMapping("/sendmsg")
 	public ModelAndView sendmsg(@ModelAttribute("forgot") Forgot forgot)
 	{
 		ModelAndView model=new ModelAndView("restpage","command",new RestPsw());

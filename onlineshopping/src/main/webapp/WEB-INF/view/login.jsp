@@ -34,7 +34,7 @@
   </head>
 <body>
 
-<!--
+<!-- 
     you can substitue the span of reauth email for a input with the email and
     include the remember me checkbox
     -->
@@ -43,17 +43,17 @@
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin">
+            <form:form class="form-signin" action="logged" method="POST" modelAttribute="log">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <form:input path="mailId" type="email" id="inputEmail" class="form-control" placeholder="Email address" required= "autofocus"/>
+                <form:input path="password" type="password" id="inputPassword" class="form-control" placeholder="Password" />
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-            </form><!-- /form -->
+            </form:form><!-- /form -->
             <a href="forgot" class="forgot-password">
                 Forgot the password?
             </a>
@@ -65,7 +65,7 @@
     
     
 
- <%@ include file="/WEB-INF/view/footer.jsp" %>
+ <%@ include file="./shared/footer.jsp" %>
     
 
     <!-- Bootstrap core JavaScript -->
