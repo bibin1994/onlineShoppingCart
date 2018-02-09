@@ -13,6 +13,15 @@
   
   </properties>
   <dependencies>
+  
+  <!-- Linking backend project with front end -->
+  
+  <dependency>
+  <groupId>org.bibin</groupId>
+  <artifactId>onlineshoppingbackend</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  
    
     <!-- java web api -->
     <dependency>

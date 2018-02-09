@@ -36,8 +36,8 @@
 		<!-- Navigation -->
 		<%@ include file="./shared/header.jsp"%>
 		<div class="content">
-		<!-- Page Content -->
-		
+			<!-- Page Content -->
+
 			<!-- index -->
 			<c:if test="${userClickHome == true}">
 				<%@ include file="./home1.jsp"%>
@@ -54,12 +54,13 @@
 			</c:if>
 
 			<!-- about page when user click service -->
-			<c:if test="${userClickService == true}">
-				<%@ include file="./services.jsp"%>
+			<c:if
+				test="${userClickAllItems==true or userClickCategoryItem==true}">
+				<%@ include file="./productList.jsp"%>
 			</c:if>
-		
-		<!-- /.container -->
-</div>
+
+			<!-- /.container -->
+		</div>
 		<!-- Footer -->
 		<%@ include file="./shared/footer.jsp"%>
 

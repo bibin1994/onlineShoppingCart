@@ -5,6 +5,7 @@ import org.bibin.onlineshoppingbase.dto.*;
 
 public interface CategoryDao {
 
-	public List<Category> list();
+	public  List<Category> list();
+	public   Category get(int id);
 	
 }

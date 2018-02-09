@@ -7,7 +7,7 @@ $(function() {
 	case 'contact':
 		$('#contact').addClass('active');
 		break;
-	case 'services':
+	case 'AllItems':
 		$('#services').addClass('active');
 		break;
 	case 'home':
