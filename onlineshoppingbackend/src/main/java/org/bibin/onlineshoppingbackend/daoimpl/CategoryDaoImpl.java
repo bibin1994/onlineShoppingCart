@@ -5,12 +5,17 @@ import java.util.List;
 
 import org.bibin.onlineshoppingbackend.dao.CategoryDao;
 import org.bibin.onlineshoppingbase.dto.Category;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
 @Repository("categoryDao")
 public class CategoryDaoImpl implements CategoryDao {
 
+	@Autowired
+	SessionFactory sessionfactory;
+	
 	private static  List<Category> categories=new ArrayList<Category>();
 	
 	static 
@@ -68,11 +73,30 @@ public class CategoryDaoImpl implements CategoryDao {
 		{
 			if(categroy.getId()==id)
 			{
-				return categroy;
+				return  categroy;
 			}
 		}
 		
 		return null;
+	}
+
+
+
+	public boolean add(Category category) {
+		
+		try {
+			
+			sessionfactory.getCurrentSession().persist(category);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		
+		return false;
 	}
 
 }
